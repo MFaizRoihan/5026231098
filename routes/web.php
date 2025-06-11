@@ -5,6 +5,7 @@ use App\Http\Controllers\DosenController ;
 use App\Http\Controllers\PegawaiController ;
 use App\Http\Controllers\BlogController ;
 use App\Http\Controllers\PegawaiDBController;
+use App\Http\Controllers\MinyakgorengController;
 
 /*
 |--------------------------------------------------------------------------
@@ -59,3 +60,11 @@ Route::post('/pegawai/update',[PegawaiDBController::class, 'update']);
 Route::get('/pegawai/hapus/{id}', [PegawaiDBController::class, 'hapus']);
 Route::get('/pegawai/cari', [PegawaiDBController::class, 'cari']);
 
+// Route MinyakGorengDB
+Route::get('/minyakgoreng', [MinyakgorengController::class, 'index']);
+Route::get('/minyakgoreng/tambah', [MinyakgorengController::class, 'tambah']);
+Route::post('/minyakgoreng/store', [MinyakgorengController::class, 'store']);
+Route::get('/minyakgoreng/edit/{id}', [MinyakgorengController::class, 'edit']);
+Route::post('/minyakgoreng/update', [MinyakgorengController::class, 'update']);
+Route::get('/minyakgoreng/hapus/{id}', [MinyakgorengController::class, 'hapus']);
+Route::get('/minyakgoreng/cari', [MinyakgorengController::class, 'cari']);
