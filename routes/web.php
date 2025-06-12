@@ -6,6 +6,7 @@ use App\Http\Controllers\PegawaiController ;
 use App\Http\Controllers\BlogController ;
 use App\Http\Controllers\PegawaiDBController;
 use App\Http\Controllers\MinyakgorengController;
+use App\Http\Controllers\KaryawanController;
 
 /*
 |--------------------------------------------------------------------------
@@ -68,3 +69,9 @@ Route::get('/minyakgoreng/edit/{id}', [MinyakgorengController::class, 'edit']);
 Route::post('/minyakgoreng/update', [MinyakgorengController::class, 'update']);
 Route::get('/minyakgoreng/hapus/{id}', [MinyakgorengController::class, 'hapus']);
 Route::get('/minyakgoreng/cari', [MinyakgorengController::class, 'cari']);
+
+//route Karyawan
+Route::get('/karyawan', [KaryawanController::class, 'index']);
+Route::get('/karyawan/tambah', [KaryawanController::class, 'tambah']);
+Route::post('/karyawan/store', [KaryawanController::class, 'store']);
+Route::get('/karyawan/delete/{kodepegawai}', [KaryawanController::class, 'delete']);
