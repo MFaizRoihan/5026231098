@@ -42,16 +42,20 @@ class KaryawanController extends Controller
     }
 
     // Fungsi pencarian data karyawan
-    public function cari(Request $request)
-    {
-        $cari = $request->cari;
+ public function cari(Request $request)
+{
+    $cari = $request->cari;
 
-        // Mengambil data karyawan berdasarkan pencarian
-        $karyawan = DB::table('karyawan')
-            ->where('namalengkap', 'like', "%" . $cari . "%")
-            ->orWhere('divisi', 'like', "%" . $cari . "%")
-            ->paginate(10);  // Menggunakan pagination dengan 10 data per halaman
+    $karyawan = DB::table('karyawan')
+        ->where('namalengkap', 'like', "%{$cari}%")
+        ->orWhere('divisi',      'like', "%{$cari}%")
+        ->orWhere('departemen',  'like', "%{$cari}%")
+        ->paginate(10)
+        ->appends(['cari' => $cari]);
 
-        return view('indexkaryawan', ['karyawan' => $karyawan]);
-    }
+    return view('indexkaryawan', [
+        'karyawan' => $karyawan,
+        'cari'     => $cari,
+    ]);
+}
 }

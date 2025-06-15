@@ -7,6 +7,8 @@ use App\Http\Controllers\BlogController ;
 use App\Http\Controllers\PegawaiDBController;
 use App\Http\Controllers\MinyakgorengController;
 use App\Http\Controllers\KaryawanController;
+use App\Http\Controllers\CounterController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -75,3 +77,14 @@ Route::get('/karyawan', [KaryawanController::class, 'index']);
 Route::get('/karyawan/tambah', [KaryawanController::class, 'tambah']);
 Route::post('/karyawan/store', [KaryawanController::class, 'store']);
 Route::get('/karyawan/delete/{kodepegawai}', [KaryawanController::class, 'delete']);
+Route::get('/karyawan/cari', [KaryawanController::class, 'cari']);
+
+//route Karyawan2
+Route::get('/karyawan2', [KaryawanController::class, 'index']);
+Route::get('/karyawan/tambah', [KaryawanController::class, 'tambah']);
+Route::post('/karyawan/store', [KaryawanController::class, 'store']);
+Route::get('/karyawan/delete/{kodepegawai}', [KaryawanController::class, 'delete']);
+Route::get('/karyawan/cari', [KaryawanController::class, 'cari']);
+
+//route Counter
+Route::get('/counter', [CounterController::class, 'index']);

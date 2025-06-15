@@ -8,12 +8,18 @@
 <form action="{{ url('/karyawan/cari') }}" method="GET" class="mt-3">
     <label class="form-label"><strong>Cari Data Karyawan:</strong></label>
     <div class="d-flex">
-        <input type="text" name="cari" placeholder="Cari Karyawan..." class="form-control mr-2" style="width: 300px;">
+        <input
+            type="text"
+            name="cari"
+            value="{{ $cari ?? '' }}"
+            placeholder="Cari Karyawan..."
+            class="form-control mr-2"
+            style="width: 300px;"
+        >
         <input type="submit" value="CARI" class="btn btn-primary">
     </div>
 </form>
-<br />
-
+<br/>
 
 <!-- Tabel untuk menampilkan data karyawan -->
 <table class="table table-striped">
@@ -27,29 +33,35 @@
         </tr>
     </thead>
     <tbody>
-        @foreach ($karyawan as $data)
-        <tr>
-            <td>{{ $data->kodepegawai }}</td>
-            <td>{{ strtoupper($data->namalengkap) }}</td> <!-- Nama Lengkap dalam huruf kapital -->
-            <td>{{ $data->divisi }}</td>
-            <td>{{ strtolower($data->departemen) }}</td> <!-- Departemen dalam huruf kecil -->
-            <td>
-                <!-- Tombol untuk menghapus data -->
-                <a href="{{ url('/karyawan/delete/'.$data->kodepegawai) }}" class="btn btn-danger">Hapus</a>
-            </td>
-        </tr>
-        @endforeach
+        @forelse ($karyawan as $data)
+            <tr>
+                <td>{{ $data->kodepegawai }}</td>
+                <td>{{ strtoupper($data->namalengkap) }}</td>
+                <td>{{ $data->divisi }}</td>
+                <td>{{ strtolower($data->departemen) }}</td>
+                <td>
+                    <a
+                      href="{{ url('/karyawan/delete/'.$data->kodepegawai) }}"
+                      class="btn btn-danger"
+                      onclick="return confirm('Yakin ingin menghapus {{ $data->namalengkap }}?')"
+                    >Hapus</a>
+                </td>
+            </tr>
+        @empty
+            <tr>
+                <td colspan="5" class="text-center text-muted">
+                    Data <strong>{{ $cari }}</strong> tidak ditemukan.
+                </td>
+            </tr>
+        @endforelse
     </tbody>
 </table>
 
-<!-- Tombol Tambah Data yang dipindahkan ke bawah dengan jarak -->
-<div class="mt-3">
+<div class="d-flex justify-content-between align-items-center mt-3">
+    <!-- Tombol Tambah Data -->
     <a href="{{ url('/karyawan/tambah') }}" class="btn btn-info">+ Tambah Data</a>
-</div>
-
-<!-- Pagination dengan jarak atas -->
-<div class="mt-4">
-    {{ $karyawan->links() }} <!-- Untuk pagination -->
+    <!-- Pagination (akan mempertahankan ?cari=...) -->
+    {{ $karyawan->links() }}
 </div>
 
 @endsection
