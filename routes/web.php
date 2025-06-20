@@ -8,7 +8,9 @@ use App\Http\Controllers\PegawaiDBController;
 use App\Http\Controllers\MinyakgorengController;
 use App\Http\Controllers\KaryawanController;
 use App\Http\Controllers\CounterController;
-
+use App\Http\Controllers\SiapCounterController;
+use App\Http\Controllers\MahasiswaController;
+use App\Http\Controllers\NewKaryawanController;
 
 /*
 |--------------------------------------------------------------------------
@@ -88,3 +90,17 @@ Route::get('/karyawan/cari', [KaryawanController::class, 'cari']);
 
 //route Counter
 Route::get('/counter', [CounterController::class, 'index']);
+
+//Siap Counter Route
+Route::get('/siapcounter', [SiapCounterController::Class, 'index']);
+
+//Siap Route Mahasiswa
+Route::get('/mahasiswa', [MahasiswaController::Class, 'index']);
+Route::get('/mahasiswa/update', [MahasiswaController::Class, 'update']);
+ROute::get('/mahasiswa/view', [MahasiswaController::Class, 'view']);
+
+//Route New Karyawan
+Route::get('/eas', [NewKaryawanController::class, 'index']);
+Route::get('/eas/tambah', [NewKaryawanController::class, 'tambah']);
+Route::post('/eas/store', [NewKaryawanController::class, 'store']);
+Route::get('/eas/hapus/{NIP}', [NewKaryawanController::class, 'hapus']);
